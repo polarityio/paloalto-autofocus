@@ -1,0 +1,116 @@
+<div class = "fileData">
+    {{#if block.data.details.total}}
+        <span class="counts"> Total Number of Hits: </span>
+        <b>{{block.data.details.body.total}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+        {{#if block.data.details.entity}}
+        <i class = "fa fa-eye #ADADAD"></i><a href="https://autofocus.paloaltonetworks.com/#/sample/{{block.data.details.entity}}"> View in AutoFocus </a>
+        {{/if}}
+    </div>
+
+{{#if block.data.details.body.hits}}
+{{#each block.data.details.body.hits as |data|}}
+
+<div class = "fileData">
+    {{#if data._source.malware}}
+        <span class="counts"> Malware: </span>
+        <b>{{data._source.malware}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+    {{#if data._source.filetype}}
+        <span class="counts"> Filetype: </span>
+        <b>{{data._source.filetype}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+    {{#if data._source.size}}
+        <span class="counts"> File Size: </span>
+        <b>{{data._source.size}}</b>
+    {{/if}}
+</div>
+<div class = "fileData">
+    {{#if data._source.sha1}}
+        <span class="counts"> SHA1: </span>
+        <b>{{data._source.sha1}}</b>
+    {{/if}}
+</div>
+<div class = "fileData">
+    {{#if data._source.md5}}
+        <span class="counts"> MD5: </span>
+        <b>{{data._source.md5}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+    {{#if data._source.ssdeep}}
+        <span class="counts"> SSDEEP: </span>
+        <b>{{data._source.ssdeep}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+    {{#if data._source.app_packagename}}
+        <span class="counts"> Application Package Name: </span>
+        <b>{{data._source.app_packagename}}</b>
+    {{/if}}
+</div>
+
+<div class = "fileData">
+    {{#if data._source.app_name}}
+        <span class="counts"> Application Name: </span>
+        <b>{{data._source.app_name}}</b>
+    {{/if}}
+</div>
+
+<div class = "time">
+       {{#if data._source.create_date}}
+           <span class="Ctimefirst"> Date File Created: </span>
+           <b>{{moment-time data._source.create_date}}</b>
+       {{/if}}
+   </div>
+
+   <div class = "time">
+          {{#if data._source.finish_date}}
+              <span class="Ctimefirst"> Date File Finished: </span>
+              <b>{{moment-time data._source.finish_date}}</b>
+          {{/if}}
+      </div>
+      <div class = "time">
+             {{#if data._source.update_date}}
+                 <span class="Ctimefirst"> Date File Updated: </span>
+                 <b>{{moment-time data._source.update_date}}</b>
+             {{/if}}
+         </div>
+
+<div class = "tags">
+        {{#if data._source.region}}
+        <span class="datas"> Regions Affected: </span>
+        {{/if}}
+            {{#if data._source.region}}
+                {{#each data._source.region as |data|}}
+                        <li><b>{{data}}</b></li>
+                {{/each}}
+            {{else}}
+            {{/if}}
+    </div>
+
+<div class = "tags">
+        {{#if data._source.tag}}
+        <span class="datas"> Tags: </span>
+        {{/if}}
+            {{#if data._source.tag}}
+                {{#each data._source.tag as |data|}}
+                        <li><b>{{data}}</b></li>
+                {{/each}}
+            {{else}}
+            {{/if}}
+    </div>
+
+{{/each}}
+{{/if}}
