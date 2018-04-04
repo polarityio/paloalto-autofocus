@@ -6,11 +6,11 @@ Polarity's AutoFocus integration gives users information on hashes that have bee
 
 Please see [AutoFocus](https://www.paloaltonetworks.com/products/secure-the-network/subscriptions/autofocus) for more information.
 
-## MetaDefender Integration Options
+## AutoFocus Integration Options
 
 ### AutoFocus API Key
 
-Your AutoFocus API Key. To obtain a AutoFocus API key, you need to login to your Palo Alto account and navigate to site licenses to view your AutoFocus account. There you can find the API Key needed for AutoFocus. 
+Your AutoFocus API Key. To obtain a AutoFocus API key, you need to login to your Palo Alto account and navigate to site licenses to view your AutoFocus account. There you can find the API Key needed for AutoFocus.
 
 ## Installation Instructions
 
