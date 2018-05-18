@@ -5,7 +5,7 @@ module.exports = {
      * @type String
      * @required
      */
-    name: "Palo Alto - AutFocus",
+    name: "Palo Alto - AutoFocus",
     /**
      * The acronym that appears in the notification window when information from this integration
      * is displayed.  Note that the acronym is included as part of each "tag" in the summary information
@@ -32,7 +32,8 @@ module.exports = {
      * @optional
      */
     "styles": [
-        "./styles/auto.less"
+        "./styles/auto.less",
+        "./styles/exfoliate.less"
     ],
     /**
      * Provide custom component logic and template for rendering the integration details block.  If you do not
@@ -90,6 +91,15 @@ module.exports = {
             "key": "apiKey",
             "name": "API Key",
             "description": "AutoFocus API Key.",
+            "default": "",
+            "type": "text",
+            "userCanEdit": true,
+            "adminOnly": false
+        },
+        {
+            "key": "url",
+            "name": "Palo Alto URL",
+            "description": "AutoFocus url",
             "default": "",
             "type": "text",
             "userCanEdit": true,

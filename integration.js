@@ -13,6 +13,11 @@ let previousDomainRegexAsString = '';
 
 
 const MAX_PARALLEL_LOOKUPS = 10;
+const THROTTLE_INTERVAL = 60000;
+const THROTTLE_MAX_REQUESTS = 17;
+
+
+
 
 
 function startup(logger) {
@@ -42,8 +47,22 @@ function startup(logger) {
     requestWithDefaults = request.defaults(defaults);
 }
 
+let numLookupsInThrottleWindow = 0;
+let lastThrottleWindowStartTime = Date.now();
 
+function throttle(execFunc, throttledCB){
+  if(Date.now() - lastThrottleWindowStartTime > THROTTLE_INTERVAL){
+      numLookupsInThrottleWindow = 0;
+      lastThrottleWindowStartTime = Date.now();
+      }
 
+  if(numLookupsInThrottleWindow < THROTTLE_MAX_REQUESTS){
+    numLookupsInThrottleWindow++;
+    execFunc();
+  }else{
+    throttledCB(null);
+  }
+}
 /**
  *
  * @param entities
@@ -69,6 +88,7 @@ function doLookup(entities, options, cb) {
     }
         async.each(entities, function (entityObj, next) {
           if (entityObj.isSHA256) {
+            throttle(function(){
                 createSha256Cookie(entityObj, options, function(err, token) {
                   _lookupEntitySha256(entityObj, options, token, function (err, result) {
                     if (err) {
@@ -80,7 +100,11 @@ function doLookup(entities, options, cb) {
                     }
                 });
             });
+          }, function(){
+              next('Your lookup for [' + entityObj.value + '] was throttled.');
+          })
           }else if (entityObj.isMD5) {
+            throttle(function(){
                 createMd5Cookie(entityObj, options, function(err, token) {
                   _lookupEntityMd5(entityObj, options, token, function (err, result) {
                     if (err) {
@@ -92,7 +116,11 @@ function doLookup(entities, options, cb) {
                     }
                 });
             });
+          }, function(){
+              next('Your lookup for [' + entityObj.value + '] was throttled.');
+          });
           }else if (entityObj.isSHA1) {
+              throttle(function(){
                 createSha1Cookie(entityObj, options, function(err, token) {
                   _lookupEntitySha1(entityObj, options, token, function (err, result) {
                     if (err) {
@@ -103,6 +131,9 @@ function doLookup(entities, options, cb) {
                         next(null);
                     }
                 });
+            });
+            }, function(){
+              next('Your lookup for [' + entityObj.value + '] was throttled.');
             });
           }else {
                 lookupResults.push({entity: entityObj, data: null}); //Cache the missed results
@@ -151,8 +182,6 @@ var createSha256Cookie = function (entityObj, options, cb) {
             return;
         }
 
-
-
         let afCookie = body.af_cookie;
 
         cb(null, afCookie);
@@ -162,7 +191,7 @@ var createSha256Cookie = function (entityObj, options, cb) {
 var createMd5Cookie = function (entityObj, options, cb) {
 
     let requestOptions = {
-        uri: 'https://autofocus.paloaltonetworks.com/api/v1.0/samples/search/',
+        uri: options.url + '/api/v1.0/samples/search/',
         method: 'POST',
         body:
 {
@@ -196,6 +225,7 @@ var createMd5Cookie = function (entityObj, options, cb) {
             return;
         }
 
+        Logger.trace({body:body}, "Checking to see if the afCookie is getting passed in now");
 
         let afCookie = body.af_cookie;
 
@@ -206,7 +236,7 @@ var createMd5Cookie = function (entityObj, options, cb) {
 var createSha1Cookie = function (entityObj, options, cb) {
 
     let requestOptions = {
-        uri: 'https://autofocus.paloaltonetworks.com/api/v1.0/samples/search/',
+        uri: options.url + '/api/v1.0/samples/search/',
         method: 'POST',
         body:
 {
