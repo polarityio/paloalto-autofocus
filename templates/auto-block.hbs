@@ -1,116 +1,114 @@
-<div class = "fileData">
-    {{#if block.data.details.total}}
-        <span class="counts"> Total Number of Hits: </span>
-        <b>{{block.data.details.body.total}}</b>
-    {{/if}}
-</div>
+<div class="p-non-exfoliate-outer-padding">
 
-<div class = "fileData">
-        {{#if block.data.details.entity}}
-        <i class = "fa fa-eye #ADADAD"></i><a href="https://autofocus.paloaltonetworks.com/#/sample/{{block.data.details.entity}}"> View in AutoFocus </a>
-        {{/if}}
-    </div>
+  {{#if block.data.details.entity}}
+  <a class="p-link" href="https://autofocus.paloaltonetworks.com/#/sample/{{block.data.details.entity}}">View in AutoFocus </a><i
+          class="fa fa-external-link p-grey"></i>
+  {{/if}}
+
+  {{#if block.data.details.total}}
+        <div>
+            <span class="p-key">Total Number of Hits: </span>
+            <span class="p-value">{{block.data.details.body.total}}</span>
+        </div>
+  {{/if}}
+
 
 {{#if block.data.details.body.hits}}
-{{#each block.data.details.body.hits as |data|}}
+  {{#each block.data.details.body.hits as |data|}}
 
-<div class = "fileData">
-    {{#if data._source.malware}}
-        <span class="counts"> Malware: </span>
-        <b>{{data._source.malware}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.malware}}
+        <div>
+            <span class="p-key">Malware: </span>
+            <span class="p-value">{{data._source.malware}}</span>
+        </div>
+  {{/if}}
 
-<div class = "fileData">
-    {{#if data._source.filetype}}
-        <span class="counts"> Filetype: </span>
-        <b>{{data._source.filetype}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.filetype}}
+        <div>
+            <span class="p-key">Filetype: </span>
+            <span class="p-value">{{data._source.filetype}}</span>
+        </div>
+  {{/if}}
 
-<div class = "fileData">
-    {{#if data._source.size}}
-        <span class="counts"> File Size: </span>
-        <b>{{data._source.size}}</b>
-    {{/if}}
-</div>
-<div class = "fileData">
-    {{#if data._source.sha1}}
-        <span class="counts"> SHA1: </span>
-        <b>{{data._source.sha1}}</b>
-    {{/if}}
-</div>
-<div class = "fileData">
-    {{#if data._source.md5}}
-        <span class="counts"> MD5: </span>
-        <b>{{data._source.md5}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.size}}
+        <div>
+            <span class="p-key">File Size: </span>
+            <span class="p-value">{{data._source.size}}</span>
+        </div>
+  {{/if}}
 
-<div class = "fileData">
-    {{#if data._source.ssdeep}}
-        <span class="counts"> SSDEEP: </span>
-        <b>{{data._source.ssdeep}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.sha1}}
+        <div>
+            <span class="p-key">SHA1: </span>
+            <span class="p-value">{{data._source.sha1}}</span>
+        </div>
+  {{/if}}
 
-<div class = "fileData">
-    {{#if data._source.app_packagename}}
-        <span class="counts"> Application Package Name: </span>
-        <b>{{data._source.app_packagename}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.md5}}
+        <div>
+            <span class="p-key">MD5: </span>
+            <span class="p-value">{{data._source.md5}}</span>
+        </div>
+  {{/if}}
 
-<div class = "fileData">
-    {{#if data._source.app_name}}
-        <span class="counts"> Application Name: </span>
-        <b>{{data._source.app_name}}</b>
-    {{/if}}
-</div>
+  {{#if data._source.app_packagename}}
+        <div>
+            <span class="p-key">Applicaton Package Name: </span>
+            <span class="p-value">{{data._source.app_packagename}}</span>
+        </div>
+  {{/if}}
 
-<div class = "time">
-       {{#if data._source.create_date}}
-           <span class="Ctimefirst"> Date File Created: </span>
-           <b>{{moment-time data._source.create_date}}</b>
-       {{/if}}
-   </div>
+  {{#if data._source.app_name}}
+        <div>
+            <span class="p-key">Application Name: </span>
+            <span class="p-value">{{data._source.app_name}}</span>
+        </div>
+  {{/if}}
 
-   <div class = "time">
-          {{#if data._source.finish_date}}
-              <span class="Ctimefirst"> Date File Finished: </span>
-              <b>{{moment-time data._source.finish_date}}</b>
-          {{/if}}
-      </div>
-      <div class = "time">
-             {{#if data._source.update_date}}
-                 <span class="Ctimefirst"> Date File Updated: </span>
-                 <b>{{moment-time data._source.update_date}}</b>
-             {{/if}}
-         </div>
+  {{#if data._source.create_date}}
+        <div>
+            <span class="p-key">Date File Created: </span>
+            <span class="p-value">{{data._source.create_date}}</span>
+        </div>
+  {{/if}}
 
-<div class = "tags">
-        {{#if data._source.region}}
-        <span class="datas"> Regions Affected: </span>
-        {{/if}}
-            {{#if data._source.region}}
-                {{#each data._source.region as |data|}}
-                        <li><b>{{data}}</b></li>
+  {{#if data._source.finish_date}}
+        <div>
+            <span class="p-key">Date File Finished Processing: </span>
+            <span class="p-value">{{data._source.finish_date}}</span>
+        </div>
+  {{/if}}
+
+  {{#if data._source.update_date}}
+        <div>
+            <span class="p-key">Date File Last Updated: </span>
+            <span class="p-value">{{data._source.update_date}}</span>
+        </div>
+  {{/if}}
+
+
+  {{#if data._source.region}}
+    <div class = "tags">
+      <h1 class="p-title">
+              <i class="fa fa-fw fa-globe"></i> Regions Affected
+      </h1>
+                {{#each (limit data._source.region maxRegions) as |data|}}
+                        <span class="section-tag">{{data}}</span>
                 {{/each}}
-            {{else}}
-            {{/if}}
     </div>
+  {{/if}}
 
-<div class = "tags">
-        {{#if data._source.tag}}
-        <span class="datas"> Tags: </span>
-        {{/if}}
-            {{#if data._source.tag}}
-                {{#each data._source.tag as |data|}}
-                        <li><b>{{data}}</b></li>
-                {{/each}}
-            {{else}}
-            {{/if}}
-    </div>
+  {{#if data._source.tag}}
+  <div class = "tags">
+    <h1 class="p-title">
+            <i class="fa fa-fw fa-tag"></i> Tags
+    </h1>
+              {{#each (limit data._source.tag maxTags) as |data|}}
+                      <span class="section-tag">{{data}}</span>
+              {{/each}}
+  </div>
+  {{/if}}
 
 {{/each}}
 {{/if}}
+</div>
