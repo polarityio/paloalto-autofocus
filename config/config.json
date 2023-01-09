@@ -1,0 +1,59 @@
+{
+  "name": "Palo Alto - AutoFocus",
+  "acronym": "PAAF",
+  "description": "Hash Lookups on data that has been analyzed in AutoFocus ",
+  "entityTypes": [
+    "hash"
+  ],
+  "styles": [
+    "./styles/auto.less",
+    "./styles/exfoliate.less"
+  ],
+  "block": {
+    "component": {
+      "file": "./components/auto-block.js"
+    },
+    "template": {
+      "file": "./templates/auto-block.hbs"
+    }
+  },
+  "summary": {
+    "component": {
+      "file": "./components/auto-summary.js"
+    },
+    "template": {
+      "file": "./templates/auto-summary.hbs"
+    }
+  },
+  "request": {
+    "cert": "",
+    "key": "",
+    "passphrase": "",
+    "ca": "",
+    "proxy": "",
+    "rejectUnauthorized": true
+  },
+  "logging": {
+    "level": "info"
+  },
+  "options": [
+    {
+      "key": "apiKey",
+      "name": "API Key",
+      "description": "AutoFocus API Key.",
+      "default": "",
+      "type": "text",
+      "userCanEdit": true,
+      "adminOnly": false
+    },
+    {
+      "key": "url",
+      "name": "Palo Alto URL",
+      "description": "AutoFocus url",
+      "default": "",
+      "type": "text",
+      "userCanEdit": true,
+      "adminOnly": false
+    }
+  ]
+}
