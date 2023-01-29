@@ -1,28 +1,30 @@
 {
-  "name": "Palo Alto - AutoFocus",
-  "acronym": "PAAF",
-  "description": "Hash Lookups on data that has been analyzed in AutoFocus ",
+  "name": "Palo Alto AutoFocus",
+  "acronym": "AUTO",
+  "description": "AutoFocus provides instant access to the massive repository of Palo Alto Networks threat intelligence crowdsourced from the largest footprint of network, endpoint and cloud intel sources.",
   "entityTypes": [
+    "ipv4",
+    "domain",
     "hash"
   ],
   "styles": [
-    "./styles/auto.less",
-    "./styles/exfoliate.less"
+    "./styles/style.less"
   ],
+  "defaultColor": "light-pink",
   "block": {
     "component": {
-      "file": "./components/auto-block.js"
+      "file": "./components/block.js"
     },
     "template": {
-      "file": "./templates/auto-block.hbs"
+      "file": "./templates/block.hbs"
     }
   },
   "summary": {
     "component": {
-      "file": "./components/auto-summary.js"
+      "file": "./components/summary.js"
     },
     "template": {
-      "file": "./templates/auto-summary.hbs"
+      "file": "./templates/summary.hbs"
     }
   },
   "request": {
@@ -30,30 +32,38 @@
     "key": "",
     "passphrase": "",
     "ca": "",
-    "proxy": "",
-    "rejectUnauthorized": true
+    "proxy": ""
   },
   "logging": {
     "level": "info"
   },
   "options": [
     {
-      "key": "apiKey",
-      "name": "API Key",
-      "description": "AutoFocus API Key.",
-      "default": "",
+      "key": "url",
+      "name": "AutoFocus URL",
+      "description": "The base URL for the AutoFocus API including the schema.",
       "type": "text",
-      "userCanEdit": true,
-      "adminOnly": false
+      "default": "https://autofocus.paloaltonetworks.com",
+      "userCanEdit": false,
+      "adminOnly": true
     },
     {
-      "key": "url",
-      "name": "Palo Alto URL",
-      "description": "AutoFocus url",
+      "key": "apiKey",
+      "name": "Valid AutoFocus API Key",
+      "description": "Valid AutoFocus API Key",
       "default": "",
-      "type": "text",
-      "userCanEdit": true,
-      "adminOnly": false
+      "type": "password",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "malwareOnly",
+      "name": "View Malware Indicators Only",
+      "description": "If checked, only indicators flagged as malware will be returned",
+      "default": false,
+      "type": "boolean",
+      "userCanEdit": false,
+      "adminOnly": true
     }
   ]
 }
