@@ -5,7 +5,7 @@ module.exports = {
    * @type String
    * @required
    */
-  name: 'Palo Alto - AutoFocus',
+  name: 'Palo Alto AutoFocus',
   /**
    * The acronym that appears in the notification window when information from this integration
    * is displayed.  Note that the acronym is included as part of each "tag" in the summary information
@@ -15,23 +15,18 @@ module.exports = {
    * @type String
    * @required
    */
-  acronym: 'PAAF',
+  acronym: 'AUTO',
   /**
    * Description for this integration which is displayed in the Polarity integrations user interface
    *
    * @type String
    * @optional
    */
-  description: 'Hash Lookups on data that has been analyzed in AutoFocus ',
-  entityTypes: ['hash'],
-  /**
-   * An array of style files (css or less) that will be included for your integration. Any styles specified in
-   * the below files can be used in your custom template.
-   *
-   * @type Array
-   * @optional
-   */
-  styles: ['./styles/auto.less', './styles/exfoliate.less'],
+  description:
+    'AutoFocus provides instant access to the massive repository of Palo Alto Networks threat intelligence crowdsourced from the largest footprint of network, endpoint and cloud intel sources.',
+  entityTypes: ['ipv4', 'domain', 'hash'],
+  styles: ['./styles/style.less'],
+  defaultColor: 'light-pink',
   /**
    * Provide custom component logic and template for rendering the integration details block.  If you do not
    * provide a custom template and/or component then the integration will display data as a table of key value
@@ -42,36 +37,37 @@ module.exports = {
    */
   block: {
     component: {
-      file: './components/auto-block.js'
+      file: './components/block.js'
     },
     template: {
-      file: './templates/auto-block.hbs'
+      file: './templates/block.hbs'
     }
   },
   summary: {
     component: {
-      file: './components/auto-summary.js'
+      file: './components/summary.js'
     },
     template: {
-      file: './templates/auto-summary.hbs'
+      file: './templates/summary.hbs'
     }
   },
   request: {
     // Provide the path to your certFile. Leave an empty string to ignore this option.
-    // Relative paths are relative to the PAAF integration's root directory
+    // Relative paths are relative to the integration's root directory
     cert: '',
     // Provide the path to your private key. Leave an empty string to ignore this option.
-    // Relative paths are relative to the PAAF integration's root directory
+    // Relative paths are relative to the integration's root directory
     key: '',
     // Provide the key passphrase if required.  Leave an empty string to ignore this option.
-    // Relative paths are relative to the PAAF integration's root directory
+    // Relative paths are relative to the integration's root directory
     passphrase: '',
     // Provide the Certificate Authority. Leave an empty string to ignore this option.
-    // Relative paths are relative to the PAAF integration's root directory
+    // Relative paths are relative to the integration's root directory
     ca: '',
     // An HTTP proxy to be used. Supports proxy Auth with Basic Auth, identical to support for
     // the url parameter (by embedding the auth info in the uri)
     proxy: '',
+
     rejectUnauthorized: true
   },
   logging: {
@@ -86,22 +82,31 @@ module.exports = {
    */
   options: [
     {
-      key: 'apiKey',
-      name: 'API Key',
-      description: 'AutoFocus API Key.',
-      default: '',
+      key: 'url',
+      name: 'AutoFocus URL',
+      description: 'The base URL for the AutoFocus API including the schema.',
       type: 'text',
-      userCanEdit: true,
-      adminOnly: false
+      default: 'https://autofocus.paloaltonetworks.com',
+      userCanEdit: false,
+      adminOnly: true
     },
     {
-      key: 'url',
-      name: 'Palo Alto URL',
-      description: 'AutoFocus url',
+      key: 'apiKey',
+      name: 'Valid AutoFocus API Key',
+      description: 'Valid AutoFocus API Key',
       default: '',
-      type: 'text',
-      userCanEdit: true,
-      adminOnly: false
+      type: 'password',
+      userCanEdit: false,
+      adminOnly: true
+    },
+    {
+      key: 'malwareOnly',
+      name: 'View Malware Indicators Only',
+      description: 'If checked, only indicators flagged as malware will be returned',
+      default: false,
+      type: 'boolean',
+      userCanEdit: false,
+      adminOnly: true
     }
   ]
 };

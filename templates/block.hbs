@@ -1,0 +1,72 @@
+{{#if details.indicator}}
+  <h1 class="p-title">
+    {{fa-icon "info" fixedWidth=true}} AutoFocus Threat Intelligence Card Summary
+  </h1>
+  {{#if details.indicator.indicatorType}}
+    <div>
+      <span class="p-key">Indicator Type:</span>
+      <span class="p-value">{{details.indicator.indicatorType}}</span>
+    </div>
+  {{/if}}
+  {{#if details.indicator.firstSeenTsGlobal}}
+    <div>
+      <span class="p-key">First Seen:</span>
+      <span class="p-value">{{moment-time details.indicator.firstSeenTsGlobal}}</span>
+    </div>
+  {{/if}}
+  {{#if details.indicator.lastSeenTsGlobal}}
+    <div>
+      <span class="p-key">Last Seen:</span>
+      <span class="p-value">{{moment-time details.indicator.lastSeenTsGlobal}}</span>
+    </div>
+  {{/if}}
+  {{#if details.indicator.wildfireRelatedSampleVerdictCounts.MALWARE}}
+    <div>
+      <span class="p-key">Wildfire Verdict Count:</span>
+      <span class="p-value"><b>{{details.indicator.wildfireRelatedSampleVerdictCounts.MALWARE}}</b></span>
+    </div>
+  {{/if}}
+  {{#if details.indicator.seenByDataSourceIds}}
+    <h1 class="p-title">
+        {{fa-icon "eye" fixedWidth=true}} Sources Seen By
+    </h1>
+    <div>
+        {{#each details.indicator.seenByDataSourceIds as |seenBy| }}
+            <span class="tag">{{seenBy}}</span>
+        {{/each}}
+    </div>
+  {{/if}}
+  {{#if details.tags}}
+    <h1 class="p-title">
+        {{fa-icon "tag" fixedWidth=true}} AutoFocus Tags
+    </h1>
+    <div>
+        {{#each details.tags as |tag index| }}
+          {{#if (gt index 0)}}
+            <hr>
+          {{/if}}
+          <h1 class="p-title">
+            Tag #{{inc index}}:
+          </h1>
+          {{#if tag.tag_name}}
+            <div>
+              <span class="p-key">Name:</span>
+              <span class="p-value">{{tag.tag_name}}</span>
+            </div>
+          {{/if}}
+          {{#if tag.description}}
+            <div>
+              <span class="p-key">Description:</span>
+              <span class="p-value">{{tag.description}}</span>
+            </div>
+          {{/if}}
+          {{#if tag.source}}
+            <div>
+              <span class="p-key">Source:</span>
+              <span class="p-value">{{tag.source}}</span>
+            </div>
+          {{/if}}
+        {{/each}}
+    </div>
+  {{/if}}
+{{/if}}

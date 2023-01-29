@@ -1,0 +1,69 @@
+{
+  "name": "Palo Alto AutoFocus",
+  "acronym": "AUTO",
+  "description": "AutoFocus provides instant access to the massive repository of Palo Alto Networks threat intelligence crowdsourced from the largest footprint of network, endpoint and cloud intel sources.",
+  "entityTypes": [
+    "ipv4",
+    "domain",
+    "hash"
+  ],
+  "styles": [
+    "./styles/style.less"
+  ],
+  "defaultColor": "light-pink",
+  "block": {
+    "component": {
+      "file": "./components/block.js"
+    },
+    "template": {
+      "file": "./templates/block.hbs"
+    }
+  },
+  "summary": {
+    "component": {
+      "file": "./components/summary.js"
+    },
+    "template": {
+      "file": "./templates/summary.hbs"
+    }
+  },
+  "request": {
+    "cert": "",
+    "key": "",
+    "passphrase": "",
+    "ca": "",
+    "proxy": ""
+  },
+  "logging": {
+    "level": "info"
+  },
+  "options": [
+    {
+      "key": "url",
+      "name": "AutoFocus URL",
+      "description": "The base URL for the AutoFocus API including the schema.",
+      "type": "text",
+      "default": "https://autofocus.paloaltonetworks.com",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "apiKey",
+      "name": "Valid AutoFocus API Key",
+      "description": "Valid AutoFocus API Key",
+      "default": "",
+      "type": "password",
+      "userCanEdit": false,
+      "adminOnly": true
+    },
+    {
+      "key": "malwareOnly",
+      "name": "View Malware Indicators Only",
+      "description": "If checked, only indicators flagged as malware will be returned",
+      "default": false,
+      "type": "boolean",
+      "userCanEdit": false,
+      "adminOnly": true
+    }
+  ]
+}

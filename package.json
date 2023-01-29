@@ -1,11 +1,11 @@
 {
+  "name": "autofocus",
+  "version": "3.0.6",
   "main": "./integration.js",
-  "name": "Opswat_Metadefender",
-  "version": "3.0.3-beta",
   "private": true,
   "dependencies": {
-    "request": "^2.83",
-    "lodash": "^4.17",
-    "async": "^2.5"
+    "postman-request": "^2.88.1-postman.32",
+    "lodash": "^4.17.21",
+    "async": "^3.2.4"
   }
 }
