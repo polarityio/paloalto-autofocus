@@ -104,12 +104,7 @@ function doLookup(entities, options, cb) {
     }
 
     results.forEach((result) => {
-      if (
-        !result.body ||
-        result.body === null ||
-        result.body.length === 0 ||
-        !result.body.indicator
-      ) {
+      if (!result.body || result.body === null || result.body.length === 0 || !result.body.indicator) {
         lookupResults.push({
           entity: result.entity,
           data: null
@@ -191,8 +186,7 @@ function handleRestError(error, entity, res, body) {
 function validateOption(errors, options, optionName, errMessage) {
   if (
     typeof options[optionName].value !== 'string' ||
-    (typeof options[optionName].value === 'string' &&
-      options[optionName].value.length === 0)
+    (typeof options[optionName].value === 'string' && options[optionName].value.length === 0)
   ) {
     errors.push({
       key: optionName,
