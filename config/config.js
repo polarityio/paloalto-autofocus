@@ -24,7 +24,7 @@ module.exports = {
    */
   description:
     'AutoFocus provides instant access to the massive repository of Palo Alto Networks threat intelligence crowdsourced from the largest footprint of network, endpoint and cloud intel sources.',
-  entityTypes: ['ipv4', 'domain', 'hash'],
+  entityTypes: ['IPv4', 'domain', 'MD5', 'SHA1', 'SHA256'],
   styles: ['./styles/style.less'],
   defaultColor: 'light-pink',
   /**
