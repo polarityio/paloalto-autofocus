@@ -1,0 +1,96 @@
+{
+  "indicator": {
+    "indicatorType": "filehash",
+    "indicatorValue": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6",
+    "firstSeenTsGlobal": "2024-01-15T08:23:45.000Z",
+    "lastSeenTsGlobal": "2024-01-16T14:52:11.000Z",
+    "wildfireRelatedSampleVerdictCounts": {
+      "MALWARE": 47,
+      "BENIGN": 2,
+      "GRAYWARE": 0,
+      "PHISHING": 3
+    },
+    "latestPanVerdicts": {
+      "PAN_DB": "MALWARE",
+      "WF_SAMPLE": "MALWARE"
+    },
+    "seenByDataSourceIds": [
+      "WildFire",
+      "Unit 42",
+      "AutoFocus Feeds",
+      "Customer Networks"
+    ],
+    "confidence": 95,
+    "severity": "high"
+  },
+  "tags": [
+    {
+      "tag_name": "Ransomware.LockBit",
+      "public_tag_name": "Unit42.Ransomware.LockBit",
+      "tag_definition_scope": "unit42",
+      "tag_definition_status": "enabled",
+      "count": 1247,
+      "lasthit": "2024-01-16T12:30:00.000Z",
+      "description": "LockBit ransomware family indicators and associated infrastructure",
+      "customer_name": "Unit 42",
+      "source": "Unit 42",
+      "tag_class": "malware_family",
+      "up_votes": 89,
+      "down_votes": 2
+    },
+    {
+      "tag_name": "Commodity.Trojan",
+      "public_tag_name": "Unit42.Commodity.Trojan",
+      "tag_definition_scope": "unit42",
+      "tag_definition_status": "enabled",
+      "count": 3456,
+      "lasthit": "2024-01-16T10:15:22.000Z",
+      "description": "Generic trojan behavior patterns commonly seen in commodity malware",
+      "customer_name": "Unit 42",
+      "source": "Unit 42",
+      "tag_class": "malicious_behavior",
+      "up_votes": 234,
+      "down_votes": 12
+    },
+    {
+      "tag_name": "Targeted.Attack",
+      "public_tag_name": "Custom.Targeted.Attack",
+      "tag_definition_scope": "private",
+      "tag_definition_status": "enabled",
+      "count": 89,
+      "lasthit": "2024-01-15T18:45:33.000Z",
+      "description": "Indicators associated with targeted attack campaigns",
+      "customer_name": "Enterprise Customer",
+      "source": "Private",
+      "tag_class": "campaign",
+      "up_votes": 45,
+      "down_votes": 1
+    }
+  ],
+  "buckets": [
+    {
+      "bucket_name": "Malicious",
+      "confidence": 95
+    }
+  ],
+  "sample_analysis": {
+    "platform": "Windows 10",
+    "behavior": "File encryption and ransom note creation",
+    "network_activity": "C2 communication detected"
+  },
+  "related_samples": [
+    {
+      "sha256": "b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7",
+      "verdict": "MALWARE"
+    },
+    {
+      "sha256": "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8",
+      "verdict": "MALWARE"
+    }
+  ],
+  "metadata": {
+    "query_time": "2024-01-16T15:00:00.000Z",
+    "api_version": "v1.0",
+    "cache_status": "fresh"
+  }
+}

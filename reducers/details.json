@@ -1,0 +1,31 @@
+{
+  "root": {
+    "path": "",
+    "on_null": "return_empty"
+  },
+  "pipeline": [
+    {
+      "op": "copy",
+      "from": "indicator.indicatorType",
+      "to": "reduced_results.indicator_type"
+    },
+    {
+      "op": "copy",
+      "from": "indicator.wildfireRelatedSampleVerdictCounts.MALWARE",
+      "to": "reduced_results.wildfire_malware_count"
+    },
+    {
+      "op": "copy",
+      "from": "tags[].tag_name",
+      "to": "reduced_results.tag_names"
+    },
+    {
+      "op": "prune",
+      "strategy": "empty_values",
+      "target": "reduced_results"
+    }
+  ],
+  "output": {
+    "result": "$working.reduced_results"
+  }
+}
